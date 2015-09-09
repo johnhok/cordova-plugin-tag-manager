@@ -30,33 +30,44 @@
     //
     // category = The event category. This parameter is required to be non-empty.
     // eventAction = The event action. This parameter is required to be non-empty.
-    // eventLabel = The event label. This parameter may be a blank string to indicate no label.    
+    // eventLabel = The event label. This parameter may be a blank string to indicate no label.
     // eventValue = The event value. This parameter may be -1 to indicate no value.
-    TagManager.prototype.trackEvent = function (success, fail, category, eventAction, eventLabel, eventValue) {
+    TagManager.prototype.trackEvent = function (success, fail, map) {
         var timestamp = new Date().getTime();
         queue.push({
             timestamp: timestamp,
             method: 'trackEvent',
             success: success,
             fail: fail,
-            category: category,
-            eventAction: eventAction,
-            eventLabel: eventLabel,
-            eventValue: eventValue
+            map: map
         });
     };
 
     // log a page view
     //
     // pageURL = the URL of the page view
-    TagManager.prototype.trackPage = function (success, fail, pageURL) {
+    TagManager.prototype.trackPage = function (success, fail, map) {
         var timestamp = new Date().getTime();
         queue.push({
             timestamp: timestamp,
             method: 'trackPage',
             success: success,
             fail: fail,
-            pageURL: pageURL
+            map: map
+        });
+    };
+
+    // log an exception
+    //
+    // pageURL = the URL of the page view
+    TagManager.prototype.trackException = function (success, fail, map) {
+        var timestamp = new Date().getTime();
+        queue.push({
+            timestamp: timestamp,
+            method: 'trackException',
+            success: success,
+            fail: fail,
+            map: map
         });
     };
 
@@ -79,7 +90,7 @@
             method: 'exitGTM',
             success: success,
             fail: fail
-        });        
+        });
     };
 
     if (cordovaRef && cordovaRef.addConstructor) {
@@ -94,21 +105,24 @@
             window.plugins = {};
         }
         if (!window.plugins.TagManager) {
-            window.plugins.TagManager = new TagManager();            
+            window.plugins.TagManager = new TagManager();
         }
     }
 
-    function run() {        
+    function run() {
         if (queue.length > 0) {
             var item = queue.shift();
             if (item.method === 'initGTM') {
                 cordovaRef.exec(item.success, item.fail, 'TagManager', item.method, [item.id, item.period]);
             }
             else if (item.method === 'trackEvent') {
-                cordovaRef.exec(item.success, item.fail, 'TagManager', item.method, [item.category, item.eventAction, item.eventLabel, item.eventValue]);
+                cordovaRef.exec(item.success, item.fail, 'TagManager', item.method, [item.map]);
             }
             else if (item.method === 'trackPage') {
-                cordovaRef.exec(item.success, item.fail, 'TagManager', item.method, [item.pageURL]);
+                cordovaRef.exec(item.success, item.fail, 'TagManager', item.method, [item.map]);
+            }
+            else if (item.method === 'trackException') {
+                cordovaRef.exec(item.success, item.fail, 'TagManager', item.method, [item.map]);
             }
             else if (item.method === 'dispatch') {
                 cordovaRef.exec(item.success, item.fail, 'TagManager', item.method, []);

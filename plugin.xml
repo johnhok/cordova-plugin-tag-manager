@@ -3,11 +3,11 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Tag Manager</name>
     <description>Google Tag Manager plugin for analytics tracking with support for events and pageviews.</description>
-    <author email="code@jareddickson.com" href="https://github.com/kraihn/cordova-plugin-tag-manager">Jared Dickson</author>
+    <author email="code@jareddickson.com" href="https://github.com/johnhok/cordova-plugin-tag-manager">Jared DIckson</author>
     <license>MIT</license>
     <keywords>cordova,tag manager,google tag manager,gtm,analytics,tracking,universal analytics, mobile analytics</keywords>
-    <repo>https://github.com/kraihn/cordova-plugin-tag-manager.git</repo>
-    <issue>https://github.com/kraihn/cordova-plugin-tag-manager/issues</issue>
+    <repo>https://github.com/johnhok/cordova-plugin-tag-manager.git</repo>
+    <issue>https://github.com/johnhok/cordova-plugin-tag-manager/issues</issue>
     <js-module name="TagManager" src="www/TagManager.js">
         <clobbers target="cordova.plugins.TagManager"/>
     </js-module>
@@ -30,17 +30,29 @@
                 <param name="ios-package" value="CDVTagManager"/>
             </feature>
         </config-file>
-        <source-file src="src/ios/CDVTagManager.m"/>
-        <source-file src="src/ios/libGoogleAnalyticsServices.a" framework="true" />
-        <header-file src="src/ios/CDVTagManager.h" />
         <header-file src="src/ios/TAGContainer.h" />
         <header-file src="src/ios/TAGContainerOpener.h" />
         <header-file src="src/ios/TAGDataLayer.h" />
         <header-file src="src/ios/TAGLogger.h" />
         <header-file src="src/ios/TAGManager.h" />
+	    <header-file src="src/ios/GAI.h" />
+	    <header-file src="src/ios/GAIDictionaryBuilder.h" />
+	    <header-file src="src/ios/GAIEcommerceFields.h" />
+	    <header-file src="src/ios/GAIEcommerceProduct.h" />
+	    <header-file src="src/ios/GAIEcommerceProductAction.h" />
+	    <header-file src="src/ios/GAIEcommercePromotion.h" />
+	    <header-file src="src/ios/GAIFields.h" />
+	    <header-file src="src/ios/GAILogger.h" />
+	    <header-file src="src/ios/GAITrackedViewController.h" />
+	    <header-file src="src/ios/GAITracker.h" />
+        <source-file src="src/ios/CDVTagManager.m"/>
+        <header-file src="src/ios/CDVTagManager.h" />
+	    <source-file src="src/ios/libGoogleAnalyticsServices.a" framework="true" />
+	    <source-file src="src/ios/libAdIdAccess.a" framework="true" />
 
         <framework src="CoreData.framework" />
         <framework src="SystemConfiguration.framework" />
+        <framework src="AdSupport.framework" />
         <framework src="libz.dylib" />
         <framework src="libsqlite3.dylib" />
     </platform>

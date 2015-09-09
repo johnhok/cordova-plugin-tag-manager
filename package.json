@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kraihn/cordova-plugin-tag-manager.git"
+    "url": "git+https://github.com/johnhok/cordova-plugin-tag-manager.git"
   },
   "keywords": [
     "cordova",
@@ -29,7 +29,7 @@
   "author": "Jared Dickson <code@jareddickson.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kraihn/cordova-plugin-tag-manager/issues"
+    "url": "https://github.com/johnhok/cordova-plugin-tag-manager/issues"
   },
-  "homepage": "https://github.com/kraihn/cordova-plugin-tag-manager#readme"
+  "homepage": "https://github.com/johnhok/cordova-plugin-tag-manager#readme"
 }

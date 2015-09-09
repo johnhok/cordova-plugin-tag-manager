@@ -71,7 +71,7 @@ Initialize Tag Manager with an account ID and the number of seconds between disp
 
 Log an event.
 
-    tagManager.trackEvent(success, error, category, eventAction, eventLabel, eventValue);
+    tagManager.trackEvent(success, error, map);
 
 ### Parameters
 
@@ -79,24 +79,18 @@ Log an event.
 
 - __error__: (Optional) The callback to execute if an error occurs.
 
-- __category__: The event category. This parameter is required to be non-empty.
-
-- __eventAction__: The event action. This parameter is required to be non-empty.
-
-- __eventLabel__: The event label. This parameter may be a blank string to indicate no label.
-
-- __eventValue__: (Optional) The event value. This parameter may be -1 to indicate no value. Only accepts digits.
+- __map__: The event map that will be pushed into the DataLayer.
 
 ### Quick Example
 
     // Track a click-to-call event
-    tagManager.trackEvent(null, null, 'Link', 'Click', 'Call (800) 123-1234', -1);
+    tagManager.trackEvent(null, null, {});
 
 ## tagManager.trackPage
 
 Log a page view.
 
-    tagManager.trackPage(success, error, pageURL);
+    tagManager.trackPage(success, error, map);
 
 ### Parameters
 
@@ -104,12 +98,12 @@ Log a page view.
 
 - __error__: (Optional) The callback to execute if an error occurs.
 
-- __pageURL__: The URL of the page view.
+- __map__: The event map that will be pushed into the DataLayer.
 
 ### Quick Example
 
     // Track a pageview on a Contact Us page
-    tagManager.trackPage(null, null, '/contact-us');
+    tagManager.trackPage(null, null, {});
 
 ## tagManager.dispatch
 
