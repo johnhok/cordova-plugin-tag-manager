@@ -84,7 +84,7 @@ Log an event.
 ### Quick Example
 
     // Track a click-to-call event
-    tagManager.trackEvent(null, null, {});
+    tagManager.trackEvent(success, error, {});
 
 ## tagManager.trackPage
 
@@ -103,7 +103,7 @@ Log a page view.
 ### Quick Example
 
     // Track a pageview on a Contact Us page
-    tagManager.trackPage(null, null, {});
+    tagManager.trackPage(success, error, {});
 
 ## tagManager.dispatch
 
